@@ -12,10 +12,10 @@ res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.
 
 
 %%Loading the data
-load('/Users/eesh/eesh_summer_14/image_analysis/Membranes--vertices--Vertex-x.mat');
+load('/Users/eesh/Desktop/image_analysis/Membranes--vertices--Vertex-x.mat');
 datax=data;
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
-load('/Users/eesh/eesh_summer_14/image_analysis/Membranes--vertices--Vertex-y.mat'); %this loads the y 
+load('/Users/eesh/Desktop/image_analysis/Membranes--vertices--Vertex-y.mat'); %this loads the y 
 datay=data;
 cell_number=size(datay,3); % This just assigns 109 to the cel_number for the given file
 COM=zeros(cell_number,2);
@@ -49,7 +49,7 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
    %%SCRIPT TO FIND CENTER OF MASS OF A CELL 
    %=M; %uncomment this line if you want to find the center of mass of
    %myosin distribution 
-   run('/Users/eesh/eesh_summer_14/image_analysis/centerofmass_cell');
+   run('/Users/eesh/Desktop/image_analysis/centerofmass_cell');
 
    
 %%
@@ -63,7 +63,7 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
    
     %%RADIAL INTENSITY DISTRIBUTION FOR ROK
     
-    run('/Users/eesh/eesh_summer_14/image_analysis/radial_distribution.m');
+    run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
     
     %%THIS PLOTS THE CELL NUMBER ONTO THE CELL
   text( cell(cell_index).COM_X, cell(cell_index).COM_Y, [num2str(cell_index)],'Color', 'g');   
@@ -98,7 +98,7 @@ end
    t_poly;
    
  
-  run('/Users/eesh/eesh_summer_14/image_analysis/radial_distribution.m');
+  run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
     
 end
 cell_myosin=cell;
@@ -120,12 +120,12 @@ k = waitforbuttonpress ;
      %%MYOSIN PLOT
  cell=cell_myosin;
  rok=0;%this is just for plotting
-  run('/Users/eesh/eesh_summer_14/image_analysis/plot_radial.m');
+  run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
 
     %%ROK PLOT
     cell=cell_rok;
     rok=1;
-    run('/Users/eesh/eesh_summer_14/image_analysis/plot_radial.m');
+    run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
 
 %%
     
@@ -140,13 +140,13 @@ load('wildtype.mat')
  cell=cell_myosin;
     rok=0;
    
- run('/Users/eesh/eesh_summer_14/image_analysis/averageovercells.m');
+ run('/Users/eesh/Desktop/image_analysis/averageovercells.m');
  wild_myosin=average_C(1:30,:);
 %%PLOT FOR ROK AVERAGE OVER CELLS 
  cell=cell_rok;
 rok=1;
 
- run('/Users/eesh/eesh_summer_14/image_analysis/averageovercells.m'); 
+ run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
   wild_rok=average_C(1:30,:);
 WILD_corr=corr(wild_myosin,wild_rok)
  %%THIS IS FOR SPN(average thing
@@ -157,14 +157,14 @@ WILD_corr=corr(wild_myosin,wild_rok)
  cell=cell_myosin;
     rok=0;
   subplot(2,1,2)   
- run('/Users/eesh/eesh_summer_14/image_analysis/averageovercells.m');
+ run('/Users/eesh/Desktop/image_analysis/averageovercells.m');
   spn_myosin=average_C(1:30,:);
  
 %%PLOT FOR ROK AVERAGE OVER CELLS 
  cell=cell_rok;
 rok=1;
 
- run('/Users/eesh/eesh_summer_14/image_analysis/averageovercells.m'); 
+ run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
  spn_rok=average_C(1:30,:);
  
  SPN_corr=corr(spn_myosin,spn_rok)

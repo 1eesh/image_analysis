@@ -24,11 +24,11 @@ MAX=[];%%THis variable makes the maximum intensity matrix 0
   for q=1:16,
          line=[cell(cell_index).COM_X cell(cell_index).COM_Y angles{q}(1) -angles{q}(2)];
          quadrant=1;
-         run('/Users/eesh/eesh_summer_14/image_analysis/script_radialmax_distance.m');
+         run('/Users/eesh/Desktop/image_analysis/script_radialmax_distance.m');
          TEMP(q).C=C_temp;
         
          quadrant=0;
-         run('/Users/eesh/eesh_summer_14/image_analysis/script_radialmax_distance.m');
+         run('/Users/eesh/Desktop/image_analysis/script_radialmax_distance.m');
          TEMP(q+16).C=C_temp;
          
   end
