@@ -64,7 +64,8 @@ k = waitforbuttonpress ;
  boxplot(AVERAGE_spn)
      title('SPN Mutant')
      ylabel('Microns');
-     %ylim([-1 10])
+     %ylim([0 2]);
+    
      hold on   
 
 
@@ -117,6 +118,6 @@ AVERAGE_wildtype;
  boxplot(AVERAGE_wildtype)
      title('Wild Type')
      ylabel('Microns');
-     %ylim([-1 10])
+    % ylim([0 2])
      hold on 
 
