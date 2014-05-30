@@ -150,7 +150,7 @@ rok=1;
 
  run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
   wild_rok=average_C(1:30,:);
-WILD_corr=xcov(wild_myosin,wild_rok,0,'coeff')
+WILD_corr=xcov(wild_myosin,wild_rok,0,'none')
 
  %%THIS IS FOR SPN(average thing
  
@@ -170,6 +170,6 @@ rok=1;
  run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
  spn_rok=average_C(1:30,:);
  
- SPN_corr=xcov(spn_myosin,spn_rok,0,'coeff')
+ SPN_corr=xcov(spn_myosin,spn_rok,0,'unbiased')
  
 end
