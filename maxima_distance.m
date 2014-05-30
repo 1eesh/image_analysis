@@ -72,7 +72,7 @@ hist(AVERAGE_spn)
      title('SPN Mutant')
       h = findobj(gca,'Type','patch');
 set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
-    % ylim([0 2])
+    ylim([0 80])
      hold on 
 
      hold on   
@@ -133,7 +133,7 @@ AVERAGE_wildtype;
  subplot(2,2,4)
  hist(AVERAGE_wildtype)
      title('Wild Type')
-     % ylim([0 2])
+     ylim([0 80]);
     h = findobj(gca,'Type','patch');
 set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
      hold on 
