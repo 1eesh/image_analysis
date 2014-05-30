@@ -30,6 +30,8 @@ COM=zeros(cell_number,2);
 A=imread('RokProj_z008_c001.tif'); 
 A_hold=A;
 M=imread('MyosinProj_z008_c003.tif'); 
+
+%M=imread('MBSProj_z008_c002.tif');
 C=imread('CellsProj_z008_c003.tif'); 
 imshow(A);
 A=double(A);

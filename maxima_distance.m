@@ -60,12 +60,21 @@ end
 k = waitforbuttonpress ;
     hold off;
 
-    subplot(1,2,1)
+    subplot(2,2,1)
  boxplot(AVERAGE_spn)
      title('SPN Mutant')
      ylabel('Microns');
      %ylim([0 2]);
+    subplot(2,2,3)
     
+    %%plotting the histogram
+hist(AVERAGE_spn)
+     title('SPN Mutant')
+      h = findobj(gca,'Type','patch');
+set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
+    % ylim([0 2])
+     hold on 
+
      hold on   
 
 
@@ -112,12 +121,19 @@ AVERAGE_wildtype;
 %%
 
 
- 
-
-         subplot(1,2,2)
+  subplot(2,2,2)
  boxplot(AVERAGE_wildtype)
      title('Wild Type')
      ylabel('Microns');
     % ylim([0 2])
      hold on 
 
+%%
+%%PLOT histogram
+ subplot(2,2,4)
+ hist(AVERAGE_wildtype)
+     title('Wild Type')
+     % ylim([0 2])
+    h = findobj(gca,'Type','patch');
+set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
+     hold on 
