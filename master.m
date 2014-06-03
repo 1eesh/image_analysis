@@ -115,7 +115,7 @@ cell_myosin=cell;
 %COM_threshold(:,:,threshold)=COM;
 k = waitforbuttonpress ;
     hold off;
-    
+%%    
     start_cell=21;
     end_cell=30;
     

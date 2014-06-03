@@ -34,7 +34,8 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
 
 
   %%
-  cell_index=90
+  load('spn');
+  cell_index=2
   %%Average using average of averages
   if(size(cell_rok(cell_index).mean,1)>=30) 
    [r_rok,t_rok]=max(cell_rok(cell_index).mean(1:30,:))
