@@ -25,5 +25,5 @@ y=[cell(cell_index).COM_Y intersect(2,2)];
 if(size(C_temp)>30),
     C_temp=C_temp(1:30,:);
 end
-[c,i_line]=max(C_temp(:,:));
+[c,i_line]=max(C_temp(:,:)); %%use the new customized maxima function if you dont care about time
 MAX=[MAX; cx(i_line) , cy(i_line)];

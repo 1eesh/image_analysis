@@ -133,7 +133,7 @@ k = waitforbuttonpress ;
     
 %%PLOTTING the AVERAGE intensity Distribution for The Cell
 if 1,
-k = waitforbuttonpress ;
+plot
     hold off;
 %%   
 wild=1;

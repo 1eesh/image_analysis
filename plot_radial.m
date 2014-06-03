@@ -19,6 +19,7 @@ for cell_index=start_cell:end_cell%just selecting cell indices for plotting rand
      title(cell(cell_index).index)
      hold on
  i=i+1;
+ 
 end
 
 
