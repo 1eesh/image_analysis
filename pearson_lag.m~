@@ -32,7 +32,7 @@ hx_2 = graph2d.constantline(pcc_tick, 'Color',[0 0 0]);
 changedependvar(hx_2,'x');
 legend('Pearson Correlation Coefficient for different lags','Average Distance between Rok and Myosin intensity maxima');
 ylabel('Pearson Correlation Coefficient');
-xlabel('Lag applied');
+xlabel('Lag(Shifting the Myosin plot');
 
 grid on;
 
