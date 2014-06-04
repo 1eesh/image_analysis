@@ -8,7 +8,7 @@ clear all;
 %%
 
 
-res=0.1417; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn
+res=0.106; % this is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn
 
 
 %%Loading the data
@@ -132,8 +132,8 @@ k = waitforbuttonpress ;
 %%
     
 %%PLOTTING the AVERAGE intensity Distribution for The Cell
-if 1,
-plot
+if 0,
+k=waitforbuttonpress;
     hold off;
 %%   
 wild=1;

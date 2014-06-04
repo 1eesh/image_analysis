@@ -8,10 +8,12 @@
 %%THE THRESHOLD TAKEN in the problem will itself be the value that we use
 %%as the magnitude of the steps at which to change the maxima
 
-function [max_x i] = max_modified(x)
-max_x=x(1);
+function [max_x I] = max_modified(x)
+max_x=0;
+I=1;
 for i=1:length(x)
-    if x(i)>max_x*(1.2)%just trying here, this seems like a big value but it is the threshold that I used
+    if x(i)>=(max_x +3)%just trying here, this seems like a big value but it is the threshold that I used
         max_x=x(i);
+        I=i;
     end
 end

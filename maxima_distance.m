@@ -1,5 +1,5 @@
 %%
-load('spn.mat');
+%load('spn.mat');
 
 
 AVERAGE_spn=[];
@@ -37,16 +37,16 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
  
   %%Average using average of averages
   if(size(cell_rok(cell_index).mean,1)>=30) 
-   [r_rok,t_rok]=max(cell_rok(cell_index).mean(1:30,:))
-   [r_myosin,t_myosin]=max(cell_myosin(cell_index).mean(1:30,:))
+   [r_rok,t_rok]=max_modified(cell_rok(cell_index).mean(1:30,:));
+   [r_myosin,t_myosin]=max_modified(cell_myosin(cell_index).mean(1:30,:));
   end 
    
   if(size(cell_rok(cell_index).mean,1)<30) 
-    [r_rok,t_rok]=max(cell_rok(cell_index).mean);
-   [r_myosin,t_myosin]=max(cell_myosin(cell_index).mean);
+    [r_rok,t_rok]=max_modified(cell_rok(cell_index).mean);
+   [r_myosin,t_myosin]=max_modified(cell_myosin(cell_index).mean);
   end
    cell(cell_index).average_maxima_distance = abs(t_myosin-t_rok);
-  abs(t_myosin-t_rok)
+  abs(t_myosin-t_rok);
    
    AVERAGE_spn=[AVERAGE_spn;cell(cell_index).average_maxima_distance]; 
    
@@ -81,7 +81,7 @@ set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
 
 %%
 %%HERE WE JUST DO THE SAME FOR WILD TYPE
-load('wildtype.mat');
+%load('wildtype.mat');
 
 
 AVERAGE_wildtype=[];
@@ -100,13 +100,13 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
   %%
   %%Average using average of averages
   if(size(cell_rok(cell_index).mean,1)>=30) 
-   [r_rok,t_rok]=max(cell_rok(cell_index).mean(1:30,:));
-   [r_myosin,t_myosin]=max(cell_myosin(cell_index).mean(1:30,:));
+   [r_rok,t_rok]=max_modified(cell_rok(cell_index).mean(1:30,:));
+   [r_myosin,t_myosin]=max_modified(cell_myosin(cell_index).mean(1:30,:));
   end 
    
   if(size(cell_rok(cell_index).mean,1)<30) 
-    [r_rok,t_rok]=max(cell_rok(cell_index).mean);
-   [r_myosin,t_myosin]=max(cell_myosin(cell_index).mean);
+    [r_rok,t_rok]=max_modified(cell_rok(cell_index).mean);
+   [r_myosin,t_myosin]=max_modified(cell_myosin(cell_index).mean);
   end
    cell(cell_index).average_maxima_distance = abs(t_myosin-t_rok);
   

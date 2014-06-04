@@ -1,7 +1,0 @@
-%%this function finds the maxima for a matrix wherein it ignores the
-%%differences less than of or equal to a pre determined value(this is for
-%%dealing with the problems that I face when the center of mass is not at
-%%the maximal intensity and hence the covariance does not exactly
-%%correspond to the point of maxima, just improving the measure of
-%%distances between my maximas
-
