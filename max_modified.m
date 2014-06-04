@@ -12,7 +12,7 @@ function [max_x I] = max_modified(x)
 max_x=0;
 I=1;
 for i=1:length(x)
-    if x(i)>=(max_x +3)%just trying here, this seems like a big value but it is the threshold that I used
+    if x(i)>=(max_x +7)
         max_x=x(i);
         I=i;
     end

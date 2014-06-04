@@ -1,5 +1,5 @@
-%%
-%load('spn.mat');
+ %%
+load('spn_rokxmbs');
 
 
 AVERAGE_spn=[];
@@ -81,7 +81,7 @@ set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
 
 %%
 %%HERE WE JUST DO THE SAME FOR WILD TYPE
-%load('wildtype.mat');
+load('wildtype_rokxmbs.mat');
 
 
 AVERAGE_wildtype=[];
