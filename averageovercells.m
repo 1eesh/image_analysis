@@ -1,8 +1,13 @@
 
-
 max_size=0;
 for cell_index=1:cell_number,
-  
+    %%this segment normalizes the intensities between zero and one for each
+  %%cell individually
+    [r,t]=max(cell(cell_index).mean);
+    cell(cell_index).mean = cell(cell_index).mean/r ; 
+
+  %%
+    
     if(max_size<=size(cell(cell_index).mean)),
         max_size=size(cell(cell_index).mean);
     end
@@ -33,7 +38,7 @@ end
     if(rok),
    
  shadedErrorBar(1:size( average_C',2), average_C',stdev_C,'g');
- axis([0,30,0,170]);
+
   hold on
     end
     

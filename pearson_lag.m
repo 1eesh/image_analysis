@@ -1,17 +1,17 @@
 %% Here we try and get the Covariance as a function of the distance between maximas(basically we try and see whether the maximas in Pearson corelation correspond to the lag equal to the maximal distance
-load('wildtype_rokxmbs');
+load('spn_rokxmyosin');
 for cell_index=1:cell_number, %%which cell we are looking at
 
 
 pcc_tick=8;
 
 %%the average distance between maxima for each cell
-if (size(mean(1)) >25)
+   if (size(cell_rok(cell_index).mean,1) >25)
 myo_pcc=cell_myosin(cell_index).mean(1:25,:);
 rok_pcc=cell_rok(cell_index).mean(1:25,:);
-end
+   end
 
-if (size(mean(1)) <=25)
+  if (size(cell_rok(cell_index).mean,1) <=25)
 myo_pcc=cell_myosin(cell_index).mean(:,:);
 rok_pcc=cell_rok(cell_index).mean(:,:);
 end
@@ -23,11 +23,11 @@ myo=plot(myo_pcc,'Color',[0 0 1]);
 grid on;
 hold on;
 rok=plot(rok_pcc,'Color',[0 1 0]);
-l1=legend('mbs','rok');
+l1=legend('Myosin','Rok');
 set(l1,'Location','northeast')
 ylabel('Intensity');
 xlabel('Distance from Rok Focus of the Cell');
-title(strcat('Intensity of Rok and MBS as a function of Distance from Rok Focus | Cell #',num2str(cell_index)));
+title(strcat('Intensity of Myosin and Rok as a function of Distance from Rok Focus | Cell #',num2str(cell_index)));
 
 subplot(2,1,2)
 % Plot lag vs intensity
@@ -42,18 +42,18 @@ hx_1 = graph2d.constantline(cell(cell_index).average_maxima_distance+pcc_tick, '
 changedependvar(hx_1,'x');
 
 %legend
-l2=legend('PCC for different lags','Rok-MBS mean maximal distance ');
+l2=legend('PCC for different lags','Myosin-Rok mean maximal distance ');
 set(l2,'Location','best')
 
 %axes and titles
 ylabel('Pearson Correlation Coefficient(PCC)');
 xlabel('Lag');
-title(strcat('Pearson Correlation Coefficient as a function of lag(relative shift in Rok and MBS plots | Cell #',num2str(cell_index)));
+title(strcat('Pearson Correlation Coefficient as a function of lag(relative shift) in Myosin and Rok plots | Cell #',num2str(cell_index)));
 grid on;
 
 
 %#
-filename=strcat('/Users/eesh/Desktop/eesh_summer_14/Documentation/Presentation_June5/rokxmbs_wildtype/','rokxmbs_wildtype_radialintensity_pcclag_cell_',num2str(cell_index));
+filename=strcat('/Users/eesh/Desktop/eesh_summer_14/Documentation/Presentation_June5/rokxmyosin_spn/','rokxmyosin_spn_radialintensity_pcclag_cell_',num2str(cell_index));
 print('-depsc', filename);
 hold off
 

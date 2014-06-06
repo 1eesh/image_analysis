@@ -30,12 +30,14 @@ COM=zeros(cell_number,2);
 A=imread('RokProj_z008_c001.tif'); 
 A_hold=A;
 M=imread('MBSProj_z008_c002.tif'); 
-
+Q=imread('MyosinProj_z008_c003.tif'); 
 %M=imread('MBSProj_z008_c002.tif');
 C=imread('CellsProj_z008_c003.tif'); 
 imshow(A);
 A=double(A);
+A_hold=double(A_hold);
 M=double(M);
+Q=double(Q);
 %%REMEMBER: IF YOU to output a grayscale image you must convert it to
 %%uint8(use imshow(A) , after doing double(A), and it wont show output,
 %%nothing wrong with the matrix, but it just wont show output
@@ -43,11 +45,11 @@ hold on;
 rok=1;
 
   %for thresholding, holding com for different thresholds
-
+A=Q;
 threshold=0.80 ;
 
 for cell_index=1:cell_number, %this mega for loop calculates the COM for all the cells which are taken from the edge output
-    
+   A=A_hold ;
    %%SCRIPT TO FIND CENTER OF MASS OF A CELL 
    %=M; %uncomment this line if you want to find the center of mass of
    %myosin distribution 
@@ -63,6 +65,8 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
 
     %%DO NOT FORGET TO HOLD ON
    
+    A=Q;
+    
     %%RADIAL INTENSITY DISTRIBUTION FOR ROK
     
     run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
@@ -137,7 +141,7 @@ k=waitforbuttonpress;
     hold off;
 %%   
 wild=1;
-load('wildtype_rokxmbs.mat')
+load('wildtype_rokxmyosin.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
  cell=cell_myosin;
     rok=0;
@@ -156,7 +160,7 @@ WILD_corr=xcov(wild_myosin,wild_rok,0,'coeff')
  %%THIS IS FOR SPN(average thing
  
  wild=0;
- load('spn_rokxmbs.mat')
+ load('spn_rokxmyosin.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
  cell=cell_myosin;
     rok=0;
