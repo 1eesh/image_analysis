@@ -3,8 +3,10 @@
 %% Here we try and get the Covariance as a function of the distance between maximas(basically we try and see whether the maximas in Pearson corelation correspond to the lag equal to the maximal distance
 
 
+
+$$instead of taking all the area under the curve i will take the area from x=0 to x=(the place where graph comes back to y at x=0)
  %%
-load('wildtype_rokxmyosin');
+load('spn_rokxmyosin');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
@@ -15,11 +17,11 @@ for cell_index=1:cell_number, %%which cell we are looking at
     %%this segment normalizes the intensities between zero and one for each
   %%cell individually
     [rmx,t]=max(cell_rok(cell_index).mean);
-    [rmn,t]=min(cell_rok(cell_index).mean);
+    %[rmn,t]=min(cell_rok(cell_index).mean);
     
    
-    cell_rok(cell_index).mean = cell_rok(cell_index).mean/(rmx-rmn) ; 
-    cell_rok(cell_index).mean = (255/cell_rok(cell_index).mean(1,1))*cell_rok(cell_index).mean ;
+    cell_rok(cell_index).mean = cell_rok(cell_index).mean/(rmx) ; 
+    cell_rok(cell_index).mean = (2/cell_rok(cell_index).mean(1,1))*cell_rok(cell_index).mean ;
 
    
   
@@ -34,7 +36,7 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         p=polyfit(x,y,7);
     
         f = polyval(p,x);
-       % plot(x,y,'o',x,f,'-')
+       plot(x,y,'o',x,f,'-')
     end
 
     if (size(cell_rok(cell_index).mean,1) <=25)
@@ -43,20 +45,23 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         p=polyfit(x,y,10);
     
         f = polyval(p,x);
-       %plot(x,y,'o',x,f,'-')
+       plot(x,y,'o',x,f,'-')
     end
-
+hold on
 end %ignoring the outliers
 
+f=f(:,1:7);
 area = [area trapz(f)];
 
 end
 
+k=waitforbuttonpress;
+hold off;
 
+var(area)
 scatter([1:1:cell_number],area);
-%hy = graph2d.constantline(0, 'Color',[0 0 0]);
-%changedependvar(hy,'y');
-
+grid on;
+grid minor;
 end
 
 
