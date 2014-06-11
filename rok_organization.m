@@ -10,7 +10,7 @@ load('spn_rokxmbs');
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
 area=[];
 
-for cell_index=1:1, %%which cell we are looking at
+for cell_index=2:2, %%which cell we are looking at
     
     %%this segment normalizes the intensities between zero and one for each
   %%cell individually
@@ -69,7 +69,7 @@ hold off;
 
 %scatter([1:1:cell_number],area);
 grid on;
-%grid minor;
+grid minor;
 end
 
 
