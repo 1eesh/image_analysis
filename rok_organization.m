@@ -6,13 +6,13 @@
 %Ignore the initial comments; this script has the metric!
 
  %%
-load('spn_rokxmbs');
+load('spn_rokxmyosin');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
 area=[];
 
-for cell_index=1:cell_number, %%which cell we are looking at
+for cell_index=105, %%which cell we are looking at
     
     %%this segment normalizes the intensities between zero and one for each
   %%cell individually
@@ -35,11 +35,14 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         x=[1:1:25];
         p=polyfit(x,y,7);
         f = polyval(p,x);
+        
+        %%horizontal line intersection part
 y1=2*ones(1,25);
 y2=f(:,1:25);
 idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
 px = x(idx);
 py = y1(idx);  
+%
         plot(x,y,'o',x,f,'-')
     end
 
@@ -49,19 +52,22 @@ py = y1(idx);
         p=polyfit(x,y,10);
     
         f = polyval(p,x);
-        
+
+       %%horizontal line intersection part
 y1=2*ones(1,size(f,2));
 y2=f;
-idx = find(y1 - y2 < eps, 1); %// Index of coordinate in array
+idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
 px = x(idx);
 py = y1(idx);
+%
        plot(x,y,'o',x,f,'-')
     end
 hold on
 end %ignoring the outliers
 
 f=f(:,1:px);
-area = [area trapz(f)];
+trap=trapz(f) ;
+area = [area trap];
 
 end
 
