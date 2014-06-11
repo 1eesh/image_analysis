@@ -3,6 +3,8 @@
 %% Here we try and get the Covariance as a function of the distance between maximas(basically we try and see whether the maximas in Pearson corelation correspond to the lag equal to the maximal distance
 
 
+%Ignore the initial comments; this script has the metric!
+
  %%
 load('spn_rokxmbs');
 
