@@ -3,16 +3,14 @@
 %% Here we try and get the Covariance as a function of the distance between maximas(basically we try and see whether the maximas in Pearson corelation correspond to the lag equal to the maximal distance
 
 
-
-%%instead of taking all the area under the curve i will take the area from x=0 to x=(the place where graph comes back to y at x=0)
  %%
-load('spn_rokxmyosin');
+load('spn_rokxmbs');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
 area=[];
 
-for cell_index=1:cell_number, %%which cell we are looking at
+for cell_index=1:1, %%which cell we are looking at
     
     %%this segment normalizes the intensities between zero and one for each
   %%cell individually
@@ -34,9 +32,13 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         y=cell_rok(cell_index).mean(1:25,:)';
         x=[1:1:25];
         p=polyfit(x,y,7);
-    
         f = polyval(p,x);
-       plot(x,y,'o',x,f,'-')
+y1=2*ones(1,25);
+y2=f(:,1:25);
+idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
+px = x(idx);
+py = y1(idx);  
+        plot(x,y,'o',x,f,'-')
     end
 
     if (size(cell_rok(cell_index).mean,1) <=25)
@@ -45,23 +47,29 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         p=polyfit(x,y,10);
     
         f = polyval(p,x);
+        
+y1=2*ones(1,size(f,2));
+y2=f;
+idx = find(y1 - y2 < eps, 1); %// Index of coordinate in array
+px = x(idx);
+py = y1(idx);
        plot(x,y,'o',x,f,'-')
     end
 hold on
 end %ignoring the outliers
 
-f=f(:,1:7);
-area = [area trapz(f)];
+f=f(:,1:px);
+area = [area trapz(f)]
 
 end
 
 k=waitforbuttonpress;
 hold off;
 
-var(area)
-scatter([1:1:cell_number],area);
+
+%scatter([1:1:cell_number],area);
 grid on;
-grid minor;
+%grid minor;
 end
 
 
