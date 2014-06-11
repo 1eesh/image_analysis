@@ -12,7 +12,7 @@ load('spn_rokxmyosin');
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
 area=[];
 
-for cell_index=105, %%which cell we are looking at
+for cell_index=1:cell_number, %%which cell we are looking at
     
     %%this segment normalizes the intensities between zero and one for each
   %%cell individually
@@ -38,7 +38,7 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         
         %%horizontal line intersection part
 y1=2*ones(1,25);
-y2=f(:,1:25);
+y2=y;
 idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
 px = x(idx);
 py = y1(idx);  
@@ -55,7 +55,7 @@ py = y1(idx);
 
        %%horizontal line intersection part
 y1=2*ones(1,size(f,2));
-y2=f;
+y2=y;
 idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
 px = x(idx);
 py = y1(idx);
