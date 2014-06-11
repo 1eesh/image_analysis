@@ -4,17 +4,25 @@
 
 
  %%
-load('spn_rokxmyosin');
+load('wildtype_rokxmyosin');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
+area=[];
 
-for cell_index=96:96, %%which cell we are looking at
+for cell_index=1:cell_number, %%which cell we are looking at
     
     %%this segment normalizes the intensities between zero and one for each
   %%cell individually
-    [r,t]=max(cell(cell_index).mean);
-    cell(cell_index).mean = cell(cell_index).mean/r ; 
+    [rmx,t]=max(cell_rok(cell_index).mean);
+    [rmn,t]=min(cell_rok(cell_index).mean);
+    
+   
+    cell_rok(cell_index).mean = cell_rok(cell_index).mean/(rmx-rmn) ; 
+    cell_rok(cell_index).mean = (255/cell_rok(cell_index).mean(1,1))*cell_rok(cell_index).mean ;
+
+   
+  
 
   %%
     
@@ -26,7 +34,7 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         p=polyfit(x,y,7);
     
         f = polyval(p,x);
-        plot(x,y,'o',x,f,'-')
+       % plot(x,y,'o',x,f,'-')
     end
 
     if (size(cell_rok(cell_index).mean,1) <=25)
@@ -35,18 +43,22 @@ if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the out
         p=polyfit(x,y,10);
     
         f = polyval(p,x);
-        plot(x,y,'o',x,f,'-')
+       %plot(x,y,'o',x,f,'-')
     end
-
-
-    
 
 end %ignoring the outliers
 
+area = [area trapz(f)];
+
 end
 
 
+scatter([1:1:cell_number],area);
+%hy = graph2d.constantline(0, 'Color',[0 0 0]);
+%changedependvar(hy,'y');
+
 end
+
 
 
 
