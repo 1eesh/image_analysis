@@ -4,7 +4,7 @@
 
 
 
-$$instead of taking all the area under the curve i will take the area from x=0 to x=(the place where graph comes back to y at x=0)
+%%instead of taking all the area under the curve i will take the area from x=0 to x=(the place where graph comes back to y at x=0)
  %%
 load('spn_rokxmyosin');
 
