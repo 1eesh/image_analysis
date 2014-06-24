@@ -28,9 +28,9 @@ for cell_index=1:cell_number, %%which cell we are looking at
 
   %%
     
-if(cell(cell_index).average_maxima_distance <=8 ) % this helps us ignore the outliers
+if(cell(cell_index).average_maxima_distance <=30 ) % this helps us ignore the outliers
       
-    if (size(cell_rok(cell_index).mean,1) >25)
+    if (size(cell_rok(cell_index).mean,1) >=25)
         y=cell_rok(cell_index).mean(1:25,:)';
         x=[1:1:25];
         p=polyfit(x,y,7);
@@ -46,7 +46,7 @@ py = y1(idx);
         plot(x,y,'o',x,f,'-')
     end
 
-    if (size(cell_rok(cell_index).mean,1) <=25)
+    if (size(cell_rok(cell_index).mean,1) <25)
         y=cell_rok(cell_index).mean(:,:)';
         x=[1:1:size(cell_rok(cell_index).mean,1)];
         p=polyfit(x,y,10);
@@ -66,7 +66,7 @@ hold on
 end %ignoring the outliers
 
 f=f(:,1:px);
-trap=trapz(f) ;
+trap=trapz(f)% - 2*(px-1);
 area = [area trap];
 
 end
@@ -79,6 +79,21 @@ hold off;
 x=[1:1:cell_number];
 y=area;
 scatter(x,y);
+
+title('Quantifying and Classifying the distribution of Rok within a cell');
+ylabel('Metric(Area under the curve');
+xlabel('Cell Number');
+
+if 0
+hy1 = graph2d.constantline(0, 'Color',[1 0 0]);
+changedependvar(hy1,'y');
+
+
+hy2 = graph2d.constantline(0.5, 'Color',[0 0 1]);
+changedependvar(hy2,'y');
+legend([hy1 hy2],'Concentrated Rok Focus marker','Rok Ring marker');
+end
+
 a = [1:1:cell_number]'; b = num2str(a); c = cellstr(b);
 dx = 0.5; dy = 0.5; % displacement so the text does not overlay the data points
 text(x-dx, y+dy, c);
