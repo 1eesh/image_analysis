@@ -1,24 +1,24 @@
-   i=1;
-for cell_index=start_cell:end_cell%just selecting cell indices for plotting randomly
+for cell_index=start_cell%: end_cell%just selecting cell indices for plotting randomly
  %%plot the shadederrorbars
-   
-    cell(cell_index).mean';
+ 
+ 
+    p=cell(cell_index).mean';
+    p=p(:,1:30);
     %plot(mean_C')
     
-    subplot(2,5,i);%subtract the first index -1 here so that the subplot input never goes above 20
+    subplot(2,1,i);%subtract the first index -1 here so that the subplot input never goes above 20
  % imshow( cell(cell_index).ANS);
     
    %hold on;
   if(rok)
-   shadedErrorBar(1:size( cell(cell_index).mean',2), cell(cell_index).mean',cell(cell_index).stdev,'g');
+   plot(1:size( p,2), p,'Color','g');
   end
    if(~rok)
-   shadedErrorBar(1:size( cell(cell_index).mean',2), cell(cell_index).mean',cell(cell_index).stdev,'r');
+   plot(1:size( p,2), p,'Color','r');
   end
-    axis([0,40,0,190]);
+    %axis([0,30,0,190]);
      title(cell(cell_index).index)
      hold on
- i=i+1;
  
 end
 

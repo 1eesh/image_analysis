@@ -119,9 +119,11 @@ cell_myosin=cell;
 %COM_threshold(:,:,threshold)=COM;
 k = waitforbuttonpress ;
     hold off;
-%%    
-    start_cell=11;
-    end_cell=20;
+%%
+load('wildtype_rokxmyosin.mat')
+  
+    start_cell=78;
+    end_cell=96;
     
      %%MYOSIN PLOT
  cell=cell_myosin;
