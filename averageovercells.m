@@ -1,4 +1,8 @@
+%%%%%%%%
+%averageovercells.m
+%This code averages 
 
+%%%%%%%%
 max_size=0;
 for cell_index=1:cell_number,
     %%this segment normalizes the intensities between zero and one for each

@@ -1,4 +1,5 @@
-for cell_index=start_cell%: end_cell%just selecting cell indices for plotting randomly
+i=1;
+for cell_index=start_cell: end_cell%just selecting cell indices for plotting randomly
  %%plot the shadederrorbars
  
  
@@ -19,7 +20,7 @@ for cell_index=start_cell%: end_cell%just selecting cell indices for plotting ra
     %axis([0,30,0,190]);
      title(cell(cell_index).index)
      hold on
- 
+ i=i+1;
 end
 
 
