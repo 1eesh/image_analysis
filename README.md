@@ -13,3 +13,19 @@ of proteins in a cell
 1)I will do all of this for MBS now and then compare ROK and MYOSIN with MBS
 2)I will get histograms for frequency of distances to get an idea of the distribution of these maximal distances.
 3)To develop an intuition of how cross correlation works; I will get correlation as a function of offset and see if we get a maxima at the offset correponding to the mean distance between maximas of the fibers.
+
+%%%%
+
+Resolutions:
+
+cont3 = 0.10627
+
+cont4 = 0.0785
+
+cont4bis = 0.10627
+
+spn1 = 0.1417
+
+spn5 = 0.10627
+
+spn6 = 0.1417

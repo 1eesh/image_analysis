@@ -2,16 +2,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %master.m (the first script that you would call when you start analysing
-%The algorithm first finds the point of maximmum intensity for each cell 
-%and then normalizes the intensity of each of the pixel in the cell by 
-%dividing each pixel value with the value of the maximum intensity of a
-%pixel in the cell(now each value lies between zero and one). 
-%Then it applies a filter that filters out the pixels with intensities 
-%less than a certain threshold(15%) and then it finds the weighted 
-%centre of mass(centre of intensity) of each of the cells. 
-%THis is the Rok Focus of the cells
-
-
 
 %%USEFUL OUTPUT VARIABLES
 
@@ -19,13 +9,13 @@
 %%cell_myosin is the structure containing all the relevant information for Rok
 
 
-
-
-
-
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
 
 
 
@@ -40,8 +30,8 @@
 %LOADING DATA AND CHANGING PATHS
 
 clear all;      %clears the current variables in the workspace
-res=0.106;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
-threshold=0.80; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
+res=0.1417;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
+threshold=0.7; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
 rok=1;          %Flag to recognize when to plot rok and when to plot myosin
 
 
@@ -58,7 +48,6 @@ COM=zeros(cell_number,2);  %Initializing Center of Mass(COM) to all zeros
 
 %%Loading the images into MATLAB variables
 A=imread('RokProj_z008_c001.tif');          %Load the Rok Image into A
-A_hold=A;                                   %Save the original uint8 Rok image into A_hold(enables imshow(A_hold)
 M=imread('MBSProj_z008_c002.tif');          %Load the MBS data into M
 Q=imread('MyosinProj_z008_c003.tif');       %Load the Myosin data into Q
 C=imread('CellsProj_z008_c003.tif');        %Load the Membrane data into C
@@ -66,6 +55,7 @@ C=imread('CellsProj_z008_c003.tif');        %Load the Membrane data into C
 
 imshow(A);                                  %Displays the image A(Rok)
 hold on;
+A_hold=A;                                   %Save the original uint8 Rok image into A_hold(enables imshow(A_hold)
 
 %%Converting all variables to a double
 A=double(A);                                %Converts A to double for computation
@@ -74,6 +64,12 @@ Q=double(Q);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
 
 
 
@@ -132,6 +128,13 @@ cell_rok=cell;  %%SAVING ALL THE DATA for ROK into cell_rok structure for future
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
 
 
 

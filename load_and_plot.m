@@ -1,9 +1,9 @@
 
 %%
-load('wildtype_rokxmyosin.mat')
+load('spn1_70.mat')
   
-    start_cell=78;
-    end_cell=79;
+    start_cell=100;
+    end_cell=start_cell;
     
      %%MYOSIN PLOT
  cell=cell_myosin;
@@ -18,12 +18,12 @@ load('wildtype_rokxmyosin.mat')
 %%
     
 %%PLOTTING the AVERAGE intensity Distribution for The Cell
-if 0,
+if 1,
 k=waitforbuttonpress;
     hold off;
 %%   
 wild=1;
-load('wildtype_rokxmyosin.mat')
+%load('wildtype_rokxmyosin.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
  cell=cell_myosin;
     rok=0;
@@ -42,7 +42,7 @@ WILD_corr=xcov(wild_myosin,wild_rok,0,'coeff')
  %%THIS IS FOR SPN(average thing
  
  wild=0;
- load('spn_rokxmyosin.mat')
+ %load('spn_rokxmyosin.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
  cell=cell_myosin;
     rok=0;

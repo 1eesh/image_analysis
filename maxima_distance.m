@@ -1,5 +1,5 @@
  %%
-load('wildtype_rokxmyosin');
+%load('wildtype_rokxmyosin');
 
 
 AVERAGE_spn=[];
@@ -81,7 +81,7 @@ set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
 
 %%
 %%HERE WE JUST DO THE SAME FOR WILD TYPE
-load('wildtype_mbsxmyosin.mat');
+%load('wildtype_mbsxmyosin.mat');
 
 
 AVERAGE_wildtype=[];

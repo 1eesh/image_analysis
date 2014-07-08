@@ -6,7 +6,7 @@
 %Ignore the initial comments; this script has the metric!
 
  %%
-load('spn_rokxmyosin');
+%load('cont4');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
@@ -28,7 +28,7 @@ for cell_index=1:cell_number, %%which cell we are looking at
 
   %%
     
-if(cell(cell_index).average_maxima_distance <=30 ) % this helps us ignore the outliers
+%if(cell(cell_index).average_maxima_distance <=30 ) % this helps us ignore the outliers
       
     if (size(cell_rok(cell_index).mean,1) >=25)
         y=cell_rok(cell_index).mean(1:25,:)';
@@ -63,10 +63,16 @@ py = y1(idx);
        plot(x,y,'o',x,f,'-')
     end
 hold on
-end %ignoring the outliers
+
+
+%end %ignoring the outliers
+
+
+
+
 
 f=f(:,1:px);
-trap=trapz(f)% - 2*(px-1);
+trap=trapz(f) - 2*(px-1);
 area = [area trap];
 
 end

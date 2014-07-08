@@ -1,37 +1,123 @@
- tx = datax{1,1,cell_index}'./res;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%FINDS THE CENTER OF MASS OF AN INDIVIDUAL CELL
 
-    ty = datay{1,1,cell_index}'./res;
+%The algorithm first finds the point of maximmum intensity for each cell 
+%and then normalizes the intensity of each of the pixel in the cell by 
+%dividing each pixel value with the value of the maximum intensity of a
+%pixel in the cell(now each value lies between zero and one). 
+%Then it applies a filter that filters out the pixels with intensities 
+%less than a certain threshold(20%) and then it finds the weighted 
+%centre of mass(centre of intensity) of each of the cells after the threshold. 
+%This is the Rok Focus of the cells
 
-     vert_cell=size(tx,2);
-   t_poly=zeros(vert_cell,2);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-   for i=1:vert_cell,
-       t_poly(i ,1)=tx(i);
-       t_poly(i ,2)=ty(i);
-   end
 
-   t_poly;
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Reads the EDGE data and stores it into usable variables
+%Dividing each of these by res. The EDGE data is in microns and we need to
+%convert them back to pixels so that we can segment cells using the EDGE
+%data
+
+tx = datax{1,1,cell_index}'./res;   %x coordinates of polygon for the cell
+ty = datay{1,1,cell_index}'./res;   %y coordinates of polygon for the cell
+
+
+
+
+%This part of the code is not used in this script. Ignore for now.
+vert_cell=size(tx,2);               
+t_poly=zeros(vert_cell,2);          
+
+for i=1:vert_cell,
+    t_poly(i ,1)=tx(i);
+    t_poly(i ,2)=ty(i);
+end
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%The section that segments the image into individual cells using EDGE data
+    BW=roipoly(A,tx,ty);        %BW is binary mask for the cell
+    BW=double(BW);              %Converting to double for higher precision
+    SE = strel('octagon',3);    %Edge erosion structure to ignore edge aberrations 
+    BW = imerode(BW,SE);        %Eroding the edges using the EDGE erosion structure
+    cell(cell_index).ANS=BW.*A; %Multiply element by element the BW mask to the original image. 
     
-%now i just need to use the vertices(i already know how to access them, i
-%just have to use roipoly with vertices and i am done.
-%%
-
-
-%%THe center of mass is stored in the variables COM_X and COM_Y and an
-%%image is outputed by the program(the tiny red dot is the center of mass)
-
-  %just enter the image file, make sure you enter the file is added to MATLAB's path
+    %NOTE: THE VARIABLE cell(cell_index).ANS contains a single cell now
+    %correspoding to the cell_index
     
-    BW=roipoly(A,tx,ty);
-    BW=double(BW);
-    SE = strel('octagon',3);
-    BW = imerode(BW,SE);    %eroding the edges
-    cell(cell_index).ANS=BW.*A;
-    %imshow(ANS);
-    g = mat2gray(cell(cell_index).ANS);
-    ANS = im2bw(g, threshold);
+    %g contains the same matrix as cell(cell_index).ANS but normalized for
+    %maximum value in the individual cell
+    g = mat2gray(cell(cell_index).ANS);     %g has values from 0 to 1(1 is the maximum intensity in the cell
+    
+    
+    ANS = im2bw(g, threshold);              %The thresholding is done and the final output is stored in ANS
+    
+    ANS=cell(cell_index).ANS.*ANS;
+    
+    cell(cell_index).ANS_t= uint8(ANS);
+    %Just to be clear, ANS contains the pixels which lie in the thresholded
+    %range and this is the variable(the matrix) that we will operate on in
+    %this script.
+    
 cell(cell_index).ANS=uint8(cell(cell_index).ANS); %we can now use this to plot whatever cell we want!
-%% This part of the code is for finding the x coordinate of the center of mass
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%The rest of the script operates on ANS. It simply finds the weighted
+%center of intensity for ANS. No tricks here. The intelligent part was the
+%previous section where we used the maximum intensity in a cell to arrive
+%at a thresholded image that we use for the rest of the code.
+
+%If how we get ANS is unclear to you, just email eeshit.vaishnav@gmail.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%X coordinate of the center of mass of ANS
 %ANS is the variable with the image that has been cut using roipoly
     X_pixels=size(A,1);
     Y_pixels=size(A,2);
