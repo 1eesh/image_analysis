@@ -1,8 +1,8 @@
 
 %%
-load('spn1_70.mat')
+%load('spn1_70.mat')
   
-    start_cell=100;
+    start_cell=16;
     end_cell=start_cell;
     
      %%MYOSIN PLOT

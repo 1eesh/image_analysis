@@ -6,7 +6,7 @@
 %Ignore the initial comments; this script has the metric!
 
  %%
-%load('cont4');
+load('spn1_70_weighted');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
@@ -56,7 +56,7 @@ py = y1(idx);
        %%horizontal line intersection part
 y1=2*ones(1,size(f,2));
 y2=y;
-idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
+idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array, last intersection
 px = x(idx);
 py = y1(idx);
 %
@@ -72,7 +72,7 @@ hold on
 
 
 f=f(:,1:px);
-trap=trapz(f) - 2*(px-1);
+trap=trapz(f);% - 2*(px-1);
 area = [area trap];
 
 end

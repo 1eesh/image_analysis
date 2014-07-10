@@ -1,3 +1,0 @@
-cell_index= 96;
-
-imcrop(cell(cell_index).ANS)
