@@ -1,6 +1,6 @@
 
 %%
-load('spn6_45.mat')
+%load('spn6_45.mat')
   
     start_cell=4;
     end_cell=start_cell;
@@ -23,7 +23,7 @@ k=waitforbuttonpress;
     hold off;
 %%   
 wild=1;
-%load('wildtype_rokxmyosin.mat')
+load('cont4bis_95.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
  cell=cell_myosin;
     rok=0;

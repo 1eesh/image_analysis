@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
+%master->load and plot->maxima_distance->rok_organization
 
 
 
@@ -30,8 +30,8 @@
 %LOADING DATA AND CHANGING PATHS
 
 clear all;      %clears the current variables in the workspace
-res=0.1417;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
-threshold=0.45; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
+res=0.0785;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
+threshold=0.95; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
 edge_erosion=3;%Set the number of pixels that you would like to shave off the edge   
 rok=1;          %Flag to recognize when to plot rok and when to plot myosin
 
@@ -67,7 +67,7 @@ Q=double(Q);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-
+Q=M;    %Delete this for myosin
 
 
 

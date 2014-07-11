@@ -1,5 +1,5 @@
  %%
-%load('wildtype_rokxmyosin');
+load('cont4_95');
 
 
 AVERAGE_spn=[];

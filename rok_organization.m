@@ -50,7 +50,7 @@ for i=1:size(soline_ring),
 end
  %%
  %}
-load('spn6_45');
+%load('cont4_95');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
@@ -72,7 +72,7 @@ for cell_index=1:cell_number, %%which cell we are looking at
 
   %%
     
-%if(cell(cell_index).average_maxima_distance <=30 ) % this helps us ignore the outliers
+if(cell(cell_index).average_maxima_distance <=15 ) % this helps us ignore the outliers
       
     if (size(cell_rok(cell_index).mean,1) >=25)
         y=cell_rok(cell_index).mean(1:25,:)';
@@ -116,7 +116,7 @@ py = y1(idx);
 hold on
 
 
-%end %ignoring the outliers
+end %ignoring the outliers
 
 
 
