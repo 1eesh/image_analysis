@@ -1,8 +1,8 @@
 
 %%
-%load('spn1_70.mat')
+load('spn6_45.mat')
   
-    start_cell=16;
+    start_cell=4;
     end_cell=start_cell;
     
      %%MYOSIN PLOT
@@ -29,18 +29,19 @@ wild=1;
     rok=0;
    
  run('/Users/eesh/Desktop/image_analysis/averageovercells.m');
- wild_myosin=average_C(1:30,:);
+ wild_myosin=average_C(1:15,:);
 %%PLOT FOR ROK AVERAGE OVER CELLS 
  cell=cell_rok;
 rok=1;
 
  run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
-  wild_rok=average_C(1:30,:);
+  wild_rok=average_C(1:15,:);
 WILD_corr=xcov(wild_myosin,wild_rok,0,'coeff')
  title('Average over all the cells for Wild type Mutant');
  xlabel(strcat('Peason correlation coefficient for the Average plots = ',num2str(WILD_corr)));
  %%THIS IS FOR SPN(average thing
  
+ %{
  wild=0;
  %load('spn_rokxmyosin.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
@@ -59,4 +60,5 @@ rok=1;
  
  SPN_corr=xcov(spn_myosin,spn_rok,0,'coeff')
  xlabel(strcat('Peason correlation coefficient for the Average plots = ',num2str(SPN_corr)));
+ %}
 end

@@ -31,7 +31,8 @@
 
 clear all;      %clears the current variables in the workspace
 res=0.1417;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
-threshold=0.7; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
+threshold=0.45; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
+edge_erosion=3;%Set the number of pixels that you would like to shave off the edge   
 rok=1;          %Flag to recognize when to plot rok and when to plot myosin
 
 
@@ -50,7 +51,7 @@ COM=zeros(cell_number,2);  %Initializing Center of Mass(COM) to all zeros
 A=imread('RokProj_z008_c001.tif');          %Load the Rok Image into A
 M=imread('MBSProj_z008_c002.tif');          %Load the MBS data into M
 Q=imread('MyosinProj_z008_c003.tif');       %Load the Myosin data into Q
-C=imread('CellsProj_z008_c003.tif');        %Load the Membrane data into C
+%C=imread('CellsProj_z008_c003.tif');        %Load the Membrane data into C
 
 
 imshow(A);                                  %Displays the image A(Rok)
@@ -91,6 +92,8 @@ Q=double(Q);
 %depending on where you execute the scripts.
 
 for cell_index=1:cell_number, 
+    
+
     
 %*************************************************************************%     
     %%SCRIPT TO FIND CENTER OF MASS OF A CELL 
@@ -158,12 +161,11 @@ rok=0; %Here we change the rok flag to 0(as we are now talking about myosin(Basi
 
 
 for cell_index=1:cell_number,
-  
+
   %*************************************************************************% 
     %%SCRIPT TO FIND THE RADIAL INTENSITY DISTRIBUTION FOR ROK  
     run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
   %*************************************************************************%
-
 end
 cell_myosin=cell;   %%SAVING ALL THE DATA for Myosin into cell_myosin structure for future use
 

@@ -61,7 +61,7 @@ end
 %%The section that segments the image into individual cells using EDGE data
     BW=roipoly(A,tx,ty);        %BW is binary mask for the cell
     BW=double(BW);              %Converting to double for higher precision
-    SE = strel('octagon',3);    %Edge erosion structure to ignore edge aberrations 
+    SE = strel('octagon',edge_erosion);    %Edge erosion structure to ignore edge aberrations 
     BW = imerode(BW,SE);        %Eroding the edges using the SE octagonal erosion structure
     cell(cell_index).ANS=BW.*A; %Multiply element by element the BW mask to the original image. 
     

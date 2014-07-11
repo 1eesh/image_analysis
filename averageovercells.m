@@ -34,7 +34,7 @@ end
     average_C = nanmean(C,2);
     stdev_C = nanstd(C',1);
 
-    stdv=stdev_C(:,1:30);
+    stdv=stdev_C(:,1:15);
     AVeG=average_C';
     
     %%PLOTTING BEGINS WITH FLAGS
@@ -42,14 +42,14 @@ end
         subplot(2,1,1) 
     if(rok),
    
- shadedErrorBar(1:1:30, AVeG(:,1:30),stdv,'g');
+ shadedErrorBar(1:1:15, AVeG(:,1:15),stdv,'g');
 
   hold on
     end
     
       if(~rok),
  
- shadedErrorBar(1:1:30, AVeG(:,1:30),stdv,'r');
+ shadedErrorBar(1:1:15, AVeG(:,1:15),stdv,'r');
  
  hold on
       end
@@ -60,14 +60,14 @@ end
         subplot(2,1,2) 
     if(rok),
    
- shadedErrorBar(1:1:30, AVeG(:,1:30),stdv,'g');
+ shadedErrorBar(1:1:15, AVeG(:,1:15),stdv,'g');
  
   hold on
     end
     
       if(~rok),
  
- shadedErrorBar(1:1:30, AVeG(:,1:30),stdv,'r');
+ shadedErrorBar(1:1:15, AVeG(:,1:15),stdv,'r');
  
   hold on
       end

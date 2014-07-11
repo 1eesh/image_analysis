@@ -3,10 +3,54 @@
 %% Here we try and get the Covariance as a function of the distance between maximas(basically we try and see whether the maximas in Pearson corelation correspond to the lag equal to the maximal distance
 
 
+%%Outputting individual cells into files
+
+%{
+load('spn1_70_weighted');
+
+for cell_index=1:cell_number,
+
+A=imread('RokProj_z008_c001.tif');  
+A=double(A);
+tx = datax{1,1,cell_index}'./res;   %x coordinates of polygon for the cell
+ty = datay{1,1,cell_index}'./res;   %y coordinates of polygon for the cell
+
+
+
+BW=roipoly(A,tx,ty);        %BW is binary mask for the cell
+    BW=double(BW);              %Converting to double for higher precision
+    SE = strel('octagon',3);    %Edge erosion structure to ignore edge aberrations 
+    BW = imerode(BW,SE);        %Eroding the edges using the SE octagonal erosion structure
+    ANS=BW.*A; %Multiply element by element the BW mask to the original image. 
+    
+
+ANS=uint8(ANS);
+%imwrite(M,strcat('cell',num2str(cell_index),'_time',num2str(t),'.tif'));
+%jet, hot,
+
+imwrite(ANS,strcat('cell_color_',num2str(cell_index),'.tif'));
+
+end
+
+
+soline_ring=[96,100,3,4,13,24,26,29,38,39,41,43,44,47,52,63,65,68,70,71,73,74,76,82,84,85,86,87,88,89,102,103,104];
+soline_focus=[79,49,2,6,7,9,14,15,19,21,23,28,31,32,35,45,49,50,58,60,61,62,64,78,79,80,81,83,90,95,101,106];
+soline_diffused=[16,1,8,10,12,17,18,20,22,25,27,30,33,34,37,40,42,46,53,54,55,56,57,59,66,67,69,72,75,77,91,92,93,94,97,98,99,105,107,108,109,111,112];
+%%
 %Ignore the initial comments; this script has the metric!
 
+min(area(soline_ring))
+
+min=10;
+for i=1:size(soline_ring),
+   if(area(soline_ring(i))<min & area(soline_ring(i))~=0) 
+    min=area(soline_ring(i));
+    min_ind=i;
+   end 
+end
  %%
-load('spn1_70_weighted');
+ %}
+load('spn6_45');
 
 
 if 1 %% this segment of the code fits a pokynomial to the plot of Rok intensity and then plots the polynomial on to the Rok plot
@@ -33,6 +77,9 @@ for cell_index=1:cell_number, %%which cell we are looking at
     if (size(cell_rok(cell_index).mean,1) >=25)
         y=cell_rok(cell_index).mean(1:25,:)';
         x=[1:1:25];
+        
+        divisor=25; %for area normalizing
+        
         p=polyfit(x,y,7);
         f = polyval(p,x);
         
@@ -49,6 +96,10 @@ py = y1(idx);
     if (size(cell_rok(cell_index).mean,1) <25)
         y=cell_rok(cell_index).mean(:,:)';
         x=[1:1:size(cell_rok(cell_index).mean,1)];
+        
+        divisor=size(cell_rok(cell_index).mean,1); %for area normalizing
+        
+        
         p=polyfit(x,y,10);
     
         f = polyval(p,x);
@@ -73,6 +124,7 @@ hold on
 
 f=f(:,1:px);
 trap=trapz(f);% - 2*(px-1);
+trap=trap/(divisor);   %X axis normalization: basically just between zero and one all values
 area = [area trap];
 
 end
@@ -101,7 +153,7 @@ legend([hy1 hy2],'Concentrated Rok Focus marker','Rok Ring marker');
 end
 
 a = [1:1:cell_number]'; b = num2str(a); c = cellstr(b);
-dx = 0.5; dy = 0.5; % displacement so the text does not overlay the data points
+dx = 0.01; dy = 0.01 ; % displacement so the text does not overlay the data points
 text(x-dx, y+dy, c);
 
 %%
