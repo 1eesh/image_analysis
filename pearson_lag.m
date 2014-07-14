@@ -1,5 +1,5 @@
 %% Here we try and get the Covariance as a function of the distance between maximas(basically we try and see whether the maximas in Pearson corelation correspond to the lag equal to the maximal distance
-load('spn_rokxmyosin');
+%load('spn6_45');
 for cell_index=1:cell_number, %%which cell we are looking at
 
 

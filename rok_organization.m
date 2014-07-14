@@ -72,19 +72,19 @@ for cell_index=1:cell_number, %%which cell we are looking at
 
   %%
     
-if(cell(cell_index).average_maxima_distance <=15 ) % this helps us ignore the outliers
+if(cell(cell_index).average_maxima_distance <=0) % this helps us ignore the outliers
       
-    if (size(cell_rok(cell_index).mean,1) >=25)
-        y=cell_rok(cell_index).mean(1:25,:)';
-        x=[1:1:25];
+    if (size(cell_rok(cell_index).mean,1) >=15)
+        y=cell_rok(cell_index).mean(1:15,:)';
+        x=[1:1:15];
         
-        divisor=25; %for area normalizing
+        divisor=15; %for area normalizing
         
         p=polyfit(x,y,7);
         f = polyval(p,x);
         
         %%horizontal line intersection part
-y1=2*ones(1,25);
+y1=2*ones(1,15);
 y2=y;
 idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
 px = x(idx);
@@ -93,7 +93,7 @@ py = y1(idx);
         plot(x,y,'o',x,f,'-')
     end
 
-    if (size(cell_rok(cell_index).mean,1) <25)
+    if (size(cell_rok(cell_index).mean,1) <15)
         y=cell_rok(cell_index).mean(:,:)';
         x=[1:1:size(cell_rok(cell_index).mean,1)];
         
@@ -123,7 +123,7 @@ end %ignoring the outliers
 
 
 f=f(:,1:px);
-trap=trapz(f);% - 2*(px-1);
+trap=trapz(f); - 2*(px-1);
 trap=trap/(divisor);   %X axis normalization: basically just between zero and one all values
 area = [area trap];
 

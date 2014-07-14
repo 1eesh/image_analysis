@@ -1,5 +1,5 @@
  %%
-load('cont4');
+load('spn6_45');
 
 
 AVERAGE_spn=[];
@@ -30,7 +30,7 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
    
    
    %%THIS PLOTS THE Distance between maximas(adam) ONTO THE CELL
-  %text( cell(cell_index).COM_X, cell(cell_index).COM_Y+5, [num2str(cell(cell_index).average_maxima_distance_adam)],'Color', 'y');  
+  text( cell(cell_index).COM_X, cell(cell_index).COM_Y+5, [num2str(cell(cell_index).average_maxima_distance_adam)],'Color', 'y');  
 
 
   %%
