@@ -1,5 +1,5 @@
  %%
-load('cont4');
+load('spn1_70_weighted');
 
 
 AVERAGE_spn=[];
@@ -58,8 +58,6 @@ for cell_index=1:cell_number, %this mega for loop calculates the COM for all the
 
 end
 
-k = waitforbuttonpress ;
-    hold off;
 
     subplot(2,2,1)
  boxplot(.1417*AVERAGE_spn)
@@ -138,3 +136,5 @@ AVERAGE_wildtype;
     h = findobj(gca,'Type','patch');
 set(h,'FaceColor',[0 .5 .5],'EdgeColor','w');
      hold on 
+
+     close all;

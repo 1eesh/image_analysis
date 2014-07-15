@@ -72,7 +72,7 @@ for cell_index=1:cell_number, %%which cell we are looking at
 
   %%
     
-if(cell(cell_index).average_maxima_distance <=0) % this helps us ignore the outliers
+if(cell(cell_index).average_maxima_distance <=15) % this helps us ignore the outliers
       
     if (size(cell_rok(cell_index).mean,1) >=15)
         y=cell_rok(cell_index).mean(1:15,:)';
@@ -90,7 +90,8 @@ idx = find(y1 - y2 < eps, 1,'last'); %// Index of coordinate in array
 px = x(idx);
 py = y1(idx);  
 %
-        plot(x,y,'o',x,f,'-')
+        plot(x/15,y,'o',x/15,f,'-')
+        ylim([0 3]);
     end
 
     if (size(cell_rok(cell_index).mean,1) <15)
@@ -112,6 +113,7 @@ px = x(idx);
 py = y1(idx);
 %
        plot(x,y,'o',x,f,'-')
+       ylim([0 3]);
     end
 hold on
 
@@ -136,11 +138,13 @@ hold off;
 %%now to plot onto the graph
 x=[1:1:cell_number];
 y=area;
+area_plot=area;
 scatter(x,y);
 
 title('Quantifying and Classifying the distribution of Rok within a cell');
 ylabel('Metric(Area under the curve');
 xlabel('Cell Number');
+ylim([0 3]);
 
 if 0
 hy1 = graph2d.constantline(0, 'Color',[1 0 0]);

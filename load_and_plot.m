@@ -23,22 +23,26 @@ k=waitforbuttonpress;
     hold off;
 %%   
 wild=1;
-load('cont4bis_95.mat')
+%load('cont4bis_95.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 
  cell=cell_myosin;
     rok=0;
    
  run('/Users/eesh/Desktop/image_analysis/averageovercells.m');
- wild_myosin=average_C(1:15,:);
+ wild_myosin=average_C(1:25,:);
 %%PLOT FOR ROK AVERAGE OVER CELLS 
  cell=cell_rok;
+ 
+
 rok=1;
 
  run('/Users/eesh/Desktop/image_analysis/averageovercells.m'); 
-  wild_rok=average_C(1:15,:);
+  wild_rok=average_C(1:25,:);
 WILD_corr=xcov(wild_myosin,wild_rok,0,'coeff')
- title('Average over all the cells for Wild type Mutant');
- xlabel(strcat('Peason correlation coefficient for the Average plots = ',num2str(WILD_corr)));
+title(strcat('Average over all the cells for Wild Type (PCC =  ',num2str(WILD_corr),')'));
+ xlabel('Distance from Rok focus(microns)');
+ ylabel('Normalized Intensity(between Max and Min for Individual Cells)');
+
  %%THIS IS FOR SPN(average thing
  
  %{
