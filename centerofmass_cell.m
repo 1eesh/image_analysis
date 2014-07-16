@@ -61,8 +61,10 @@ end
 %%The section that segments the image into individual cells using EDGE data
     BW=roipoly(A,tx,ty);        %BW is binary mask for the cell
     BW=double(BW);              %Converting to double for higher precision
+   
     SE = strel('octagon',edge_erosion);    %Edge erosion structure to ignore edge aberrations 
     BW = imerode(BW,SE);        %Eroding the edges using the SE octagonal erosion structure
+    
     cell(cell_index).ANS=BW.*A; %Multiply element by element the BW mask to the original image. 
     
     %NOTE: THE VARIABLE cell(cell_index).ANS contains a single cell now
@@ -172,10 +174,16 @@ cell(cell_index).ANS=uint8(cell(cell_index).ANS); %we can now use this to plot w
     COM_X=QWERT.Centroid(1);
     COM_Y=QWERT.Centroid(2);
     end
+    
+    
     %%
     cell(cell_index).COM_X=COM_X;
     cell(cell_index).COM_Y=COM_Y;
 
+    
+    
+    
+    
     if 0
         %%HERE I ATTEMPT TO FIND THE position of the maxima of intensity
         [maxValue, linearIndexesOfMaxes] = max(ANS(:));

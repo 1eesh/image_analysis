@@ -1,5 +1,19 @@
- %%
-load('spn1_70_weighted');
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%master.m (the first script that you would call when you start analysing
+
+%%USEFUL OUTPUT VARIABLES
+
+%%cell_rok is the structure containing all the relevant information for Rok
+%%cell_myosin is the structure containing all the relevant information for Rok
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+load('spn1_70');
 
 
 AVERAGE_spn=[];

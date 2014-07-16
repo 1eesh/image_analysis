@@ -17,6 +17,7 @@ y=[cell(cell_index).COM_Y intersect(2,2)];
      end
      
 [cx,cy,C_temp]=improfile(A,x,y,'bilinear');
+
 %%just considering first 30 pixels to reduce abrasion
 if(size(C_temp)>30),
     C_temp=C_temp(1:30,:);

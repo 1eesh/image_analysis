@@ -30,21 +30,29 @@
 %LOADING DATA AND CHANGING PATHS
 
 clear all;      %clears the current variables in the workspace
+
+
 res=0.1417;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
 threshold=0.40; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
 edge_erosion=3;%Set the number of pixels that you would like to shave off the edge   
+
+
+
 rok=1;          %Flag to recognize when to plot rok and when to plot myosin
 
 
 %%Loading the data for the Vertices
 load('/Users/eesh/Desktop/image_analysis/Membranes--vertices--Vertex-x.mat');
 datax=data; %save the data loaded into a variable
+
 cell_number=size(datax,3); % This just assigns 109 to the cel_number for the given file
+
 load('/Users/eesh/Desktop/image_analysis/Membranes--vertices--Vertex-y.mat'); %this loads the y 
 datay=data; %save the data loaded into a variable
 
 
 cell_number=size(datay,3); %Count the number of cells in the image(by looking at size of EDGE DATA)
+
 COM=zeros(cell_number,2);  %Initializing Center of Mass(COM) to all zeros
 
 %%Loading the images into MATLAB variables
@@ -56,6 +64,7 @@ Q=imread('MyosinProj_z008_c003.tif');       %Load the Myosin data into Q
 
 imshow(A);                                  %Displays the image A(Rok)
 hold on;
+
 A_hold=A;                                   %Save the original uint8 Rok image into A_hold(enables imshow(A_hold)
 
 %%Converting all variables to a double
@@ -66,8 +75,9 @@ Q=double(Q);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%UNCOMMENT THIS LINE IF YOU ARE DOING ROK VS MBS 
 
-%Q=M;    %Delete this for myosin
+%Q=M;    
 
 
 
@@ -104,9 +114,13 @@ for cell_index=1:cell_number,
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %This section plots the center of mass onto the image for visual inspection
     plot(COM_X, COM_Y, 'rx');
+   
+    %%This section just draws the edges of the polygon of the cell onto the
+    %%image of the cell.tx and ty are x and y coordinates of the vertices
+    %%in pixels(they were calculated in the centerofmass_cell script.
     h = fill(tx,ty,'r');
     set(h,'FaceColor','None');
-    COM;
+  
     hold on;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -114,7 +128,7 @@ for cell_index=1:cell_number,
   
 %*************************************************************************% 
     %%SCRIPT TO FIND THE RADIAL INTENSITY DISTRIBUTION FOR ROK
-   % run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
+    run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
 %*************************************************************************% 
 
 
@@ -164,7 +178,7 @@ for cell_index=1:cell_number,
 
   %*************************************************************************% 
     %%SCRIPT TO FIND THE RADIAL INTENSITY DISTRIBUTION FOR ROK  
-   %run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
+   run('/Users/eesh/Desktop/image_analysis/radial_distribution.m');
   %*************************************************************************%
 end
 cell_myosin=cell;   %%SAVING ALL THE DATA for Myosin into cell_myosin structure for future use
@@ -177,7 +191,7 @@ cell_myosin=cell;   %%SAVING ALL THE DATA for Myosin into cell_myosin structure 
 
 %%uncomment and add variable name here.
 
-%save 'variable_name'
+%save 'cont4_65'
 
 
 
