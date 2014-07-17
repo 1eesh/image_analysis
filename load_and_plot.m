@@ -1,19 +1,39 @@
 
 %%
-load('spn6_45.mat')
+load('spn1_70.mat')
   
-    start_cell=4;
+    start_cell=5;
     end_cell=start_cell;
     
      %%MYOSIN PLOT
  cell=cell_myosin;
  rok=0;%this is just for plotting
+ flag=1;
   run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
 
     %%ROK PLOT
     cell=cell_rok;
     rok=1;
     run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
+    
+    hold on;
+load('spn1_70_mbs.mat')
+
+ start_cell=5;
+    end_cell=start_cell;
+    
+     %%MYOSIN PLOT
+ cell=cell_myosin;
+ rok=0;%this is just for plotting
+ flag=0;
+  run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
+
+    %%ROK PLOT
+   % cell=cell_rok;
+   % rok=1;
+   % run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
+    
+    
 
 %%
     
@@ -22,6 +42,8 @@ if 1,
 k=waitforbuttonpress;
     hold off;
 %%   
+%load('spn3_40_actin.mat')
+
 wild=1;
 %load('cont4bis_95.mat')
 %%PLOT FOR MYOSIN AVERAGE IVER CELLS 

@@ -13,7 +13,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-%master->load and plot->maxima_distance->rok_organization
+%master->maxima_distance->load and plot->rok_organization
 
 
 
@@ -32,9 +32,9 @@
 clear all;      %clears the current variables in the workspace
 
 
-res=0.1417;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
-threshold=0.40; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
-edge_erosion=3;%Set the number of pixels that you would like to shave off the edge   
+res=0.09;      %set the resolution for the image.This is determined by the microscopes, it is 0.2125 if you have 0.2125 microns per pixel, 0.1417 for spn,0.106 for wt
+threshold=0.95; %Set the threshold for segmentation that we will use in our Center of mass algorithm(0.8 means , 80% of maximum intensity is considered
+edge_erosion=9;%Set the number of pixels that you would like to shave off the edge   
 
 
 
@@ -56,11 +56,11 @@ cell_number=size(datay,3); %Count the number of cells in the image(by looking at
 COM=zeros(cell_number,2);  %Initializing Center of Mass(COM) to all zeros
 
 %%Loading the images into MATLAB variables
-A=imread('RokProj_z008_c001.tif');          %Load the Rok Image into A
-M=imread('MBSProj_z008_c002.tif');          %Load the MBS data into M
-Q=imread('MyosinProj_z008_c003.tif');       %Load the Myosin data into Q
+A=imread('C1-Rok-Phallo_Rh3-6.tif');          %Load the Rok Image into A
+Q=imread('C3-Rok-Phallo_Rh3-6.tif');       %Load the Myosin data into Q
 %C=imread('CellsProj_z008_c003.tif');        %Load the Membrane data into C
 
+%M=imread('MBSProj_z008_c002.tif');          %Load the MBS data into M
 
 imshow(A);                                  %Displays the image A(Rok)
 hold on;
@@ -69,7 +69,7 @@ A_hold=A;                                   %Save the original uint8 Rok image i
 
 %%Converting all variables to a double
 A=double(A);                                %Converts A to double for computation
-M=double(M);
+%M=double(M);
 Q=double(Q);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -192,6 +192,7 @@ cell_myosin=cell;   %%SAVING ALL THE DATA for Myosin into cell_myosin structure 
 %%uncomment and add variable name here.
 
 %save 'cont4_65'
+
 
 
 

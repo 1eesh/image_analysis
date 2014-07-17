@@ -1,8 +1,8 @@
 
 %%
-load('spn6_45.mat')
+load('spn1_70.mat')
   
-    start_cell=4;
+    start_cell=5;
     end_cell=start_cell;
     
      %%MYOSIN PLOT
@@ -14,6 +14,9 @@ load('spn6_45.mat')
     cell=cell_rok;
     rok=1;
     run('/Users/eesh/Desktop/image_analysis/plot_radial.m');
+    
+    
+load('spn1_mbs.mat')
 
 %%
     

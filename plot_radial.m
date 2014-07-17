@@ -14,8 +14,12 @@ for cell_index=start_cell: end_cell%just selecting cell indices for plotting ran
   if(rok)
    plot(1:size( p,2), p,'Color','g');
   end
-   if(~rok)
+   if(~rok & flag)
    plot(1:size( p,2), p,'Color','r');
+   end
+  
+    if(~rok & ~flag)
+   plot(1:size( p,2), p,'Color','c');
   end
     %axis([0,30,0,190]);
      title(cell(cell_index).index)

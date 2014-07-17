@@ -2,15 +2,28 @@
 %averageovercells.m
 %This code averages 
 
-%%%%%%%%
+%%%%%%%%THRESHOLDIING 
+%spn1_70
 %soline_ring=[96,100,3,13,24,26,38,39,41,43,47,52,63,65,68,71,73,74,76,82,84,85,86,102,103,104];
 %soline_focus=[79,49,2,6,7,9,14,15,19,21,23,28,31,32,35,45,49,50,58,60,61,62,64,78,79,80,81,83,90,95,101,106];
 %soline_diffused=[16,1,8,10,12,17,18,20,22,25,27,30,33,34,37,40,42,46,53,54,55,56,57,59,66,67,69,72,75,77,91,92,93,94,97,98,99,105,107,108,109,111,112];
 
-soline_ring=find(area_plot>1.5);
-soline_diffused=find(area_plot<=1.5 & area_plot>0) ;
+%%%%%%%%THRESHOLDIING 
+%spn6_45 
+
+%soline_ring=find(area_plot>1.5);
+%soline_diffused=find(area_plot<=1.5 & area_plot>0) ;
+%soline_focus=find(area_plot==0);
+
+%%%%%%%%THRESHOLDIING 
+%spn3_40_actin 
+
+soline_ring=find(area_plot>1.25);
+size(soline_ring)
+soline_diffused=find(area_plot<=1.25 & area_plot>0) ;
 soline_focus=find(area_plot==0);
 
+%%%%%%%%
 max_size=0;
 for cell_index=1:cell_number,
     %%this segment normalizes the intensities between zero and one for each

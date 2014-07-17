@@ -91,7 +91,7 @@ px = x(idx);
 py = y1(idx);  
 %
         plot(x/15,y,'o',x/15,f,'-')
-        ylim([0 3]);
+        %ylim([0 3]);
     end
 
     if (size(cell_rok(cell_index).mean,1) <15)
@@ -113,7 +113,7 @@ px = x(idx);
 py = y1(idx);
 %
        plot(x,y,'o',x,f,'-')
-       ylim([0 3]);
+       %ylim([0 3]);
     end
 hold on
 
@@ -144,7 +144,7 @@ scatter(x,y);
 title('Quantifying and Classifying the distribution of Rok within a cell');
 ylabel('Metric(Area under the curve');
 xlabel('Cell Number');
-ylim([0 3]);
+%ylim([0 3]);
 
 if 0
 hy1 = graph2d.constantline(0, 'Color',[1 0 0]);
